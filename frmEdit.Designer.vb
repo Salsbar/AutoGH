@@ -81,6 +81,8 @@ Partial Class frmEdit
         Me.BridgeModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CronusIdentifyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CaptureCardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.QuakeBoosterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GRAWBoosterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.lblGame = New System.Windows.Forms.Label()
         Me.txtGame = New System.Windows.Forms.TextBox()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -95,6 +97,7 @@ Partial Class frmEdit
         Me.cbPrecompile = New System.Windows.Forms.CheckBox()
         Me.scMain = New System.Windows.Forms.SplitContainer()
         Me.lblWaitTime = New System.Windows.Forms.Label()
+        Me.lbActions = New AutoGH.RefreshingListBox()
         Me.tcActions = New System.Windows.Forms.TabControl()
         Me.tpController = New System.Windows.Forms.TabPage()
         Me.lblControllerIP = New System.Windows.Forms.Label()
@@ -139,6 +142,7 @@ Partial Class frmEdit
         Me.btnRenameGroup = New System.Windows.Forms.Button()
         Me.btnAddGroup = New System.Windows.Forms.Button()
         Me.btnDeleteGroup = New System.Windows.Forms.Button()
+        Me.lbGroups = New AutoGH.RefreshingListBox()
         Me.gbControllers = New System.Windows.Forms.GroupBox()
         Me.txtController4 = New System.Windows.Forms.TextBox()
         Me.lblController4 = New System.Windows.Forms.Label()
@@ -149,8 +153,7 @@ Partial Class frmEdit
         Me.txtController1 = New System.Windows.Forms.TextBox()
         Me.lblController1 = New System.Windows.Forms.Label()
         Me.cdCapture = New System.Windows.Forms.ColorDialog()
-        Me.lbActions = New AutoGH.RefreshingListBox()
-        Me.lbGroups = New AutoGH.RefreshingListBox()
+        Me.CaptureCardViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.pbLS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbRS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlControls.SuspendLayout()
@@ -605,7 +608,7 @@ Partial Class frmEdit
         '
         'btnAdd
         '
-        Me.btnAdd.Font = New System.Drawing.Font("Wingdings 2", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.btnAdd.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
         Me.btnAdd.ForeColor = System.Drawing.Color.Green
         Me.btnAdd.Location = New System.Drawing.Point(3, 265)
         Me.btnAdd.Name = "btnAdd"
@@ -616,7 +619,7 @@ Partial Class frmEdit
         '
         'btnApply
         '
-        Me.btnApply.Font = New System.Drawing.Font("Wingdings 2", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.btnApply.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
         Me.btnApply.Location = New System.Drawing.Point(208, 265)
         Me.btnApply.Name = "btnApply"
         Me.btnApply.Size = New System.Drawing.Size(30, 28)
@@ -716,9 +719,9 @@ Partial Class frmEdit
         '
         'ToolsToolStripMenuItem
         '
-        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SongToolStripMenuItem, Me.PatternToolStripMenuItem, Me.BridgeModeToolStripMenuItem, Me.CronusIdentifyToolStripMenuItem, Me.CaptureCardToolStripMenuItem})
+        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SongToolStripMenuItem, Me.PatternToolStripMenuItem, Me.BridgeModeToolStripMenuItem, Me.CronusIdentifyToolStripMenuItem, Me.CaptureCardToolStripMenuItem, Me.CaptureCardViewerToolStripMenuItem, Me.QuakeBoosterToolStripMenuItem, Me.GRAWBoosterToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
-        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(47, 20)
+        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.ToolsToolStripMenuItem.Text = "Tools"
         '
         'SongToolStripMenuItem
@@ -754,6 +757,18 @@ Partial Class frmEdit
         Me.CaptureCardToolStripMenuItem.Name = "CaptureCardToolStripMenuItem"
         Me.CaptureCardToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.CaptureCardToolStripMenuItem.Text = "Capture Card..."
+        '
+        'QuakeBoosterToolStripMenuItem
+        '
+        Me.QuakeBoosterToolStripMenuItem.Name = "QuakeBoosterToolStripMenuItem"
+        Me.QuakeBoosterToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.QuakeBoosterToolStripMenuItem.Text = "Quake 4 Booster"
+        '
+        'GRAWBoosterToolStripMenuItem
+        '
+        Me.GRAWBoosterToolStripMenuItem.Name = "GRAWBoosterToolStripMenuItem"
+        Me.GRAWBoosterToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.GRAWBoosterToolStripMenuItem.Text = "GRAW Booster"
         '
         'lblGame
         '
@@ -906,6 +921,19 @@ Partial Class frmEdit
         Me.lblWaitTime.Size = New System.Drawing.Size(100, 13)
         Me.lblWaitTime.TabIndex = 63
         Me.lblWaitTime.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'lbActions
+        '
+        Me.lbActions.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbActions.FormattingEnabled = True
+        Me.lbActions.IntegralHeight = False
+        Me.lbActions.Location = New System.Drawing.Point(3, 297)
+        Me.lbActions.Name = "lbActions"
+        Me.lbActions.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
+        Me.lbActions.Size = New System.Drawing.Size(498, 191)
+        Me.lbActions.TabIndex = 45
         '
         'tcActions
         '
@@ -1351,7 +1379,7 @@ Partial Class frmEdit
         'btnAddGroup
         '
         Me.btnAddGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnAddGroup.Font = New System.Drawing.Font("Wingdings 2", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.btnAddGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
         Me.btnAddGroup.ForeColor = System.Drawing.Color.Green
         Me.btnAddGroup.Location = New System.Drawing.Point(7, 275)
         Me.btnAddGroup.Name = "btnAddGroup"
@@ -1372,6 +1400,18 @@ Partial Class frmEdit
         Me.btnDeleteGroup.TabIndex = 40
         Me.btnDeleteGroup.Text = "r"
         Me.btnDeleteGroup.UseVisualStyleBackColor = True
+        '
+        'lbGroups
+        '
+        Me.lbGroups.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbGroups.FormattingEnabled = True
+        Me.lbGroups.IntegralHeight = False
+        Me.lbGroups.Location = New System.Drawing.Point(7, 20)
+        Me.lbGroups.Name = "lbGroups"
+        Me.lbGroups.Size = New System.Drawing.Size(133, 249)
+        Me.lbGroups.TabIndex = 0
         '
         'gbControllers
         '
@@ -1469,30 +1509,11 @@ Partial Class frmEdit
         '
         Me.cdCapture.FullOpen = True
         '
-        'lbActions
+        'CaptureCardViewerToolStripMenuItem
         '
-        Me.lbActions.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lbActions.FormattingEnabled = True
-        Me.lbActions.IntegralHeight = False
-        Me.lbActions.Location = New System.Drawing.Point(3, 297)
-        Me.lbActions.Name = "lbActions"
-        Me.lbActions.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
-        Me.lbActions.Size = New System.Drawing.Size(498, 191)
-        Me.lbActions.TabIndex = 45
-        '
-        'lbGroups
-        '
-        Me.lbGroups.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lbGroups.FormattingEnabled = True
-        Me.lbGroups.IntegralHeight = False
-        Me.lbGroups.Location = New System.Drawing.Point(7, 20)
-        Me.lbGroups.Name = "lbGroups"
-        Me.lbGroups.Size = New System.Drawing.Size(133, 249)
-        Me.lbGroups.TabIndex = 0
+        Me.CaptureCardViewerToolStripMenuItem.Name = "CaptureCardViewerToolStripMenuItem"
+        Me.CaptureCardViewerToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.CaptureCardViewerToolStripMenuItem.Text = "Capture Card Viewer"
         '
         'frmEdit
         '
@@ -1663,4 +1684,7 @@ Partial Class frmEdit
     Friend WithEvents txtVideoPixelX As System.Windows.Forms.TextBox
     Friend WithEvents lblVideoPixelY As System.Windows.Forms.Label
     Friend WithEvents lblVideoPixelX As System.Windows.Forms.Label
+    Friend WithEvents QuakeBoosterToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GRAWBoosterToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CaptureCardViewerToolStripMenuItem As ToolStripMenuItem
 End Class

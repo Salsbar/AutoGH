@@ -1136,33 +1136,6 @@ Public Class frmEdit
         End Select
     End Sub
 
-    Private Sub SongToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SongToolStripMenuItem.Click
-        Dim ss As New frmMusic
-        ss.ShowDialog()
-        If Not ss.actions Is Nothing Then
-            clearScript()
-            blankScript()
-            For Each act As clsAction In ss.actions
-                act.group = activeGroup
-                activeGroup.actions.Add(act)
-            Next
-            refreshGroup()
-            Dim sb As New System.Text.StringBuilder
-            sb.AppendLine("Song: " & ss.cbSong.SelectedItem.ToString() & " (" & ss.cbGame.SelectedItem.ToString() & ")" & IIf(ss.info <> vbNullString, " - #" & ss.info, ""))
-            Dim players As New List(Of String)
-            If Not ss.cbTrack0.SelectedItem Is Nothing Then players.Add("#1 " & ss.cbTrack0.SelectedItem.ToString() & " [" & ss.cbLevel0.SelectedItem.ToString() & "]")
-            If Not ss.cbTrack1.SelectedItem Is Nothing Then players.Add("#2 " & ss.cbTrack1.SelectedItem.ToString() & " [" & ss.cbLevel1.SelectedItem.ToString() & "]")
-            If Not ss.cbTrack2.SelectedItem Is Nothing Then players.Add("#3 " & ss.cbTrack2.SelectedItem.ToString() & " [" & ss.cbLevel2.SelectedItem.ToString() & "]")
-            If Not ss.cbTrack3.SelectedItem Is Nothing Then players.Add("#4 " & ss.cbTrack3.SelectedItem.ToString() & " [" & ss.cbLevel3.SelectedItem.ToString() & "]")
-            sb.AppendLine("Players: " & Join(players.ToArray, ", "))
-            sb.AppendLine()
-            sb.AppendLine("To use, install the game to a hard disk/USB stick to make load times consistent, start song manually, then choose to restart, move cursor to accept restart and then begin script, which will press the button to restart and then begin playing.")
-            txtDesc.Text = sb.ToString
-        End If
-        ss.Dispose()
-        ss = Nothing
-    End Sub
-
     Private Sub btnRenameGroup_Click(sender As System.Object, e As System.EventArgs) Handles btnRenameGroup.Click
         If CType(lbGroups.SelectedItem, clsActionGroup).name = mainGroup Then
             MsgBox("Can't rename the main action group.")
@@ -1301,6 +1274,21 @@ Public Class frmEdit
         frmCC = Nothing
     End Sub
 
+    Private Sub QuakeBoosterToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles QuakeBoosterToolStripMenuItem.Click
+        Dim frmCC As New frmQuake
+        frmCC.Show()
+    End Sub
+
+    Private Sub GrawBoosterToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles GRAWBoosterToolStripMenuItem.Click
+        Dim frmCC As New frmGraw
+        frmCC.Show()
+    End Sub
+
+    Private Sub CaptureCardViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CaptureCardViewerToolStripMenuItem.Click
+        Dim frmCV As New frmCaptureViewer
+        frmCV.Show()
+    End Sub
+
     Private Sub CapwizToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
         Dim frmCW As New frmcaptureWizard
         frmCW.ShowDialog()
@@ -1341,4 +1329,5 @@ Public Class frmEdit
         btnVideoColorMin.BackColor = vwf.minColor
         btnVideoColorMax.BackColor = vwf.maxColor
     End Sub
+
 End Class

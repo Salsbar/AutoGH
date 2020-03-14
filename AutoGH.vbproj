@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -15,6 +15,23 @@
     <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -25,6 +42,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>AutoGH.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -35,6 +53,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>AutoGH.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -48,16 +67,15 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DirectShowLib-2005">
-      <HintPath>..\..\TH\directshow\lib\DirectShowLib-2005.dll</HintPath>
+      <HintPath>..\..\Downloads\autogh\DirectShowLib-2005.dll</HintPath>
     </Reference>
     <Reference Include="HidLibrary">
-      <HintPath>W:\code\hidlibrary\HidLibrary-3.2.18.0\src\HidLibrary\bin\Debug\HidLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\SlimDX SDK (January 2012)\Bin\net40\x86\SlimDX.dll</HintPath>
+      <HintPath>..\..\Downloads\autogh\HidLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Deployment" />
@@ -66,6 +84,9 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Core" />
     <Reference Include="System.XML" />
+    <Reference Include="XnaFan.ImageComparison">
+      <HintPath>..\..\Downloads\JustTheDll_1.6\XnaFan.ImageComparison.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -80,13 +101,30 @@
     <Compile Include="clsAction.vb" />
     <Compile Include="clsCMController.vb" />
     <Compile Include="clsController.vb" />
-    <Compile Include="clsElements.vb" />
     <Compile Include="clsPS2Controller.cls" />
     <Compile Include="clsBBBController.cls" />
     <Compile Include="clsScript.vb" />
     <Compile Include="clsSnapshot.vb" />
     <Compile Include="clsXboxStatus.vb" />
     <Compile Include="clsCMHIDController.vb" />
+    <Compile Include="frmGraw.Designer.vb">
+      <DependentUpon>frmGraw.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGraw.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCaptureViewer.Designer.vb">
+      <DependentUpon>frmCaptureViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCaptureViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuake.Designer.vb">
+      <DependentUpon>frmQuake.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmQuake.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmBridge.Designer.vb">
       <DependentUpon>frmBridge.vb</DependentUpon>
     </Compile>
@@ -118,22 +156,13 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="modFormat.vb" />
-    <Compile Include="modMusicConverter.vb" />
     <Compile Include="frmEdit.Designer.vb">
       <DependentUpon>frmEdit.vb</DependentUpon>
     </Compile>
     <Compile Include="frmEdit.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMusic.Designer.vb">
-      <DependentUpon>frmMusic.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmMusic.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="modMain.vb" />
-    <Compile Include="modTone.vb" />
-    <Compile Include="modVocal.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -154,6 +183,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmGraw.resx">
+      <DependentUpon>frmGraw.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBridge.resx">
       <DependentUpon>frmBridge.vb</DependentUpon>
     </EmbeddedResource>
@@ -170,11 +202,14 @@
       <DependentUpon>frmEdit.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMusic.resx">
-      <DependentUpon>frmMusic.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmPattern.resx">
       <DependentUpon>frmPattern.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCaptureViewer.resx">
+      <DependentUpon>frmCaptureViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuake.resx">
+      <DependentUpon>frmQuake.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -184,6 +219,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -195,20 +232,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Netduino\ripxbdvd\NAudio-Source\NAudio\NAudio.csproj">
-      <Project>{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}</Project>
-      <Name>NAudio</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="gcdapi.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="images\" />
     <Folder Include="old\" />
     <Folder Include="scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
