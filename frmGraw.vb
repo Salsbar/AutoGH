@@ -1,6 +1,7 @@
 ﻿Imports XnaFan.ImageComparison
 Imports System.Xml
 Imports DirectShowLib
+Imports System.IO
 
 Public Class frmGraw
 
@@ -48,6 +49,10 @@ Public Class frmGraw
     Private Sub takePhotoButton_Click(sender As Object, e As EventArgs) Handles takePhotoButton.Click
         Dim filePath = "graw\images"
 
+        If Not Directory.Exists(filePath) Then
+            Directory.CreateDirectory(filePath)
+        End If
+
         Dim fis() As IO.FileInfo = (New IO.DirectoryInfo(filePath)).GetFiles()
         Dim imgIdx = fis.Length + 1
 
@@ -71,9 +76,9 @@ Public Class frmGraw
         End If
 
         If mode Then
-            modeTextLabel.Text = "solo"
+            modeBox.Text = "solo"
         Else
-            modeTextLabel.Text = "team"
+            modeBox.Text = "team"
         End If
 
         gamesTextBox.Text = currentGameCount
@@ -317,6 +322,23 @@ Public Class frmGraw
             MsgBox("Capture Device error:" & vbCrLf & ex.Message)
             Me.Close()
             Exit Sub
+        End Try
+    End Sub
+
+    Private Sub modeBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles modeBox.SelectedIndexChanged
+        Dim modeTest As String
+        Try
+            modeTest = modeBox.SelectedItem
+            If modeTest = "solo" Then
+                mode = True
+            ElseIf modeTest = "team" Then
+                mode = False
+            Else
+                Throw New System.Exception("An exception has occurred.")
+            End If
+        Catch ex As Exception
+            MsgBox("Invalid mode.")
+
         End Try
     End Sub
 

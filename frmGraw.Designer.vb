@@ -35,15 +35,14 @@ Partial Class frmGraw
         Me.takePhotoButton = New System.Windows.Forms.Button()
         Me.startButton = New System.Windows.Forms.Button()
         Me.mainCaptureTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.modeTextLabel = New System.Windows.Forms.Label()
-        Me.modeLabel = New System.Windows.Forms.Label()
         Me.gamesLabel = New System.Windows.Forms.Label()
         Me.gamesTextBox = New System.Windows.Forms.TextBox()
         Me.controllerCb = New System.Windows.Forms.ComboBox()
         Me.ControllerTextLabel = New System.Windows.Forms.Label()
         Me.deviceLabel = New System.Windows.Forms.Label()
         Me.deviceCb = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.modeBox = New System.Windows.Forms.ComboBox()
+        Me.ModeLabel = New System.Windows.Forms.Label()
         CType(Me.MainScreenCapture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MatchedSpawnCapture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -151,27 +150,10 @@ Partial Class frmGraw
         '
         Me.mainCaptureTimer.Interval = 20
         '
-        'modeTextLabel
-        '
-        Me.modeTextLabel.AutoSize = True
-        Me.modeTextLabel.Location = New System.Drawing.Point(1101, 187)
-        Me.modeTextLabel.Name = "modeTextLabel"
-        Me.modeTextLabel.Size = New System.Drawing.Size(0, 13)
-        Me.modeTextLabel.TabIndex = 26
-        '
-        'modeLabel
-        '
-        Me.modeLabel.AutoSize = True
-        Me.modeLabel.Location = New System.Drawing.Point(989, 187)
-        Me.modeLabel.Name = "modeLabel"
-        Me.modeLabel.Size = New System.Drawing.Size(34, 13)
-        Me.modeLabel.TabIndex = 25
-        Me.modeLabel.Text = "Mode"
-        '
         'gamesLabel
         '
         Me.gamesLabel.AutoSize = True
-        Me.gamesLabel.Location = New System.Drawing.Point(989, 210)
+        Me.gamesLabel.Location = New System.Drawing.Point(1000, 210)
         Me.gamesLabel.Name = "gamesLabel"
         Me.gamesLabel.Size = New System.Drawing.Size(40, 13)
         Me.gamesLabel.TabIndex = 27
@@ -179,9 +161,9 @@ Partial Class frmGraw
         '
         'gamesTextBox
         '
-        Me.gamesTextBox.Location = New System.Drawing.Point(1080, 207)
+        Me.gamesTextBox.Location = New System.Drawing.Point(1066, 207)
         Me.gamesTextBox.Name = "gamesTextBox"
-        Me.gamesTextBox.Size = New System.Drawing.Size(45, 20)
+        Me.gamesTextBox.Size = New System.Drawing.Size(72, 20)
         Me.gamesTextBox.TabIndex = 29
         '
         'controllerCb
@@ -225,33 +207,43 @@ Partial Class frmGraw
         Me.deviceCb.Size = New System.Drawing.Size(214, 21)
         Me.deviceCb.TabIndex = 30
         '
-        'Label1
+        'modeBox
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(1070, 348)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(0, 13)
-        Me.Label1.TabIndex = 20
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.modeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.modeBox.FormattingEnabled = True
+        Me.modeBox.Items.AddRange(New Object() {"solo", "team"})
+        Me.modeBox.Location = New System.Drawing.Point(1066, 180)
+        Me.modeBox.Name = "modeBox"
+        Me.modeBox.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.modeBox.Size = New System.Drawing.Size(72, 21)
+        Me.modeBox.TabIndex = 34
+        '
+        'ModeLabel
+        '
+        Me.ModeLabel.AutoSize = True
+        Me.ModeLabel.Location = New System.Drawing.Point(1002, 183)
+        Me.ModeLabel.Name = "ModeLabel"
+        Me.ModeLabel.Size = New System.Drawing.Size(34, 13)
+        Me.ModeLabel.TabIndex = 35
+        Me.ModeLabel.Text = "Mode"
         '
         'frmGraw
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1218, 564)
+        Me.Controls.Add(Me.ModeLabel)
+        Me.Controls.Add(Me.modeBox)
         Me.Controls.Add(Me.controllerCb)
         Me.Controls.Add(Me.ControllerTextLabel)
         Me.Controls.Add(Me.deviceLabel)
         Me.Controls.Add(Me.deviceCb)
         Me.Controls.Add(Me.gamesTextBox)
         Me.Controls.Add(Me.gamesLabel)
-        Me.Controls.Add(Me.modeTextLabel)
-        Me.Controls.Add(Me.modeLabel)
         Me.Controls.Add(Me.startButton)
         Me.Controls.Add(Me.matchSpawnButton)
         Me.Controls.Add(Me.controllerStateLabel)
         Me.Controls.Add(Me.controllerLabel)
-        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.spawnLabel)
         Me.Controls.Add(Me.similarityLabel)
         Me.Controls.Add(Me.similarityLabelLabel)
@@ -280,13 +272,12 @@ Partial Class frmGraw
     Friend WithEvents takePhotoButton As Button
     Friend WithEvents startButton As Button
     Friend WithEvents mainCaptureTimer As Timer
-    Friend WithEvents modeTextLabel As Label
-    Friend WithEvents modeLabel As Label
     Friend WithEvents gamesLabel As Label
     Friend WithEvents gamesTextBox As TextBox
     Friend WithEvents controllerCb As ComboBox
     Friend WithEvents ControllerTextLabel As Label
     Friend WithEvents deviceLabel As Label
     Friend WithEvents deviceCb As ComboBox
-    Friend WithEvents Label1 As Label
+    Friend WithEvents modeBox As ComboBox
+    Friend WithEvents ModeLabel As Label
 End Class
