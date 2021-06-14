@@ -12,7 +12,7 @@ Public Class frmGraw
     Dim isRunning = False
 
     Dim mode = True
-    Dim GAME_COUNT = 70
+    Dim GAME_COUNT = 35
     Dim currentGameCount = GAME_COUNT
 
     Public Sub New()
@@ -325,10 +325,27 @@ Public Class frmGraw
         End Try
     End Sub
 
-    Private Sub modeBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles modeBox.SelectedIndexChanged
+    'Private Sub modeBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles modeBox.SelectedIndexChanged
+    'Dim modeTest As String
+    'Try
+    '       modeTest = modeBox.SelectedText
+    'If modeTest = "solo" Then
+    '           mode = True
+    'ElseIf modeTest = "team" Then
+    '           mode = False
+    'Else
+    'Throw New System.Exception("An exception has occurred.")
+    'End If
+    'Catch ex As Exception
+    '       MsgBox("Invalid mode.")
+    '
+    'End Try
+    'End Sub
+
+    Private Sub modeBox_TextUpdate(sender As Object, e As EventArgs) Handles modeBox.TextUpdate
         Dim modeTest As String
         Try
-            modeTest = modeBox.SelectedItem
+            modeTest = modeBox.SelectedText
             If modeTest = "solo" Then
                 mode = True
             ElseIf modeTest = "team" Then
@@ -341,5 +358,4 @@ Public Class frmGraw
 
         End Try
     End Sub
-
 End Class

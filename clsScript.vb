@@ -1,4 +1,5 @@
-﻿Public Class clsScript
+﻿Imports System.Threading
+Public Class clsScript
     Implements IDisposable
     Public actions As List(Of clsAction)
     Public stateActions As List(Of clsStatelessAction)
@@ -138,14 +139,23 @@
                     CType(action, clsActionInputVideo).capture = capture
             End Select
             If action.controllerNumber AndAlso Not controllers.ContainsKey(action.controllerNumber) Then
-                If Not controllerIPS.ContainsKey(action.controllerNumber) Then Stop
-                Dim ip As String = controllerIPS(action.controllerNumber)
+                Dim ip As String = ""
+                If Not controllerIPS.ContainsKey(action.controllerNumber) Then
+                    Exit Sub
+                Else
+                    ip = controllerIPS(action.controllerNumber)
+                End If
+
                 If System.Text.RegularExpressions.Regex.IsMatch(ip, "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$") Then
                     controllers.Add(action.controllerNumber, New clsBBBController(ip))
                 ElseIf System.Text.RegularExpressions.Regex.IsMatch(ip, "^COM[1-9][0-9]?$") Then
                     controllers.Add(action.controllerNumber, New clsPS2Controller(ip))
                 ElseIf ip.StartsWith("CM") Then
-                    controllers.Add(action.controllerNumber, New clsCMHIDController(ip))
+                    Try
+                        controllers.Add(action.controllerNumber, New clsCMHIDController(ip))
+                    Catch
+                        Exit Sub
+                    End Try
                 Else
                     Stop
                 End If
@@ -254,7 +264,14 @@
     Private Sub runScript()
         Me.state = scriptState.running
         Dim i As Integer = 0
-        Dim curAction As clsStatelessAction = stateActions(i)
+        Dim curAction As clsStatelessAction
+        Try
+            curAction = stateActions(i)
+        Catch
+            Me.state = scriptState.scriptError
+            Throw New Exception("Script Error")
+        End Try
+
         Dim nextTime As Integer = curAction.timeoffset
         Dim curTime As Integer
         Dim waitTime As Integer
@@ -325,9 +342,15 @@
         startTime = Now
         stopFlag = False
         pauseFlag = False
-        Dim ts As New System.Threading.ThreadStart(AddressOf Me.runScript)
-        runThread = New System.Threading.Thread(ts)
-        runThread.Start()
+        'Dim ts As New System.Threading.Thread(AddressOf Me.runScript)
+        Try
+            runScript()
+            'runThread = New System.Threading.Thread(AddressOf Me.runScript)
+            'runThread.Start()
+        Catch
+            Exit Sub
+        End Try
+
     End Sub
 
     Public Sub pauseScript()

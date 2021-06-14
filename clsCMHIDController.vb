@@ -4,6 +4,7 @@ Public Class clsCMHIDController
     Inherits clsController
     Dim reportData(40) As Byte
     Dim dev As HidDevice
+
     Private apiLoaded As Boolean = False
 
     Public Overrides ReadOnly Property IFType As String
@@ -26,7 +27,7 @@ Public Class clsCMHIDController
         Next
         If idx >= devicePaths.Count Then
             MsgBox("Can't find CM with index " & idx + 1 & ".")
-            Exit Sub
+            Throw New IndexOutOfRangeException
         End If
         devicePaths.Sort()
         dev = HidDevices.GetDevice(devicePaths(idx))
@@ -38,7 +39,12 @@ Public Class clsCMHIDController
 
     Public Overrides Sub sendReport(newReport() As Byte)
         Debug.Print(System.BitConverter.ToString(newReport))
-        dev.Write(newReport)
+        If dev Is Nothing Then
+
+        Else
+            dev.Write(newReport)
+        End If
+
     End Sub
 
     Public Overrides Function baseReport() As Byte()
